@@ -1,0 +1,87 @@
+/* Positioning */
+
+#sources {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 20%;
+    overflow: auto;
+}
+
+#content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 20%;
+    margin-left: 1px;
+    overflow: auto;
+}
+
+#content table {
+    width: 100%;
+}
+
+/* Styling */
+
+body {
+    font-family: "Lucida Grande", verdana, sans-serif;
+    font-size: 11px;
+}
+
+a {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+.selected {
+    background-color: #3d80df;
+    color: white;
+}
+
+/* Left pane */
+
+#sources {
+    background: #d1d7e2;
+    border-right: 1px solid black;
+}
+
+#sources li {
+    padding-left: 100em;
+    margin-left: -99em;
+    
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+}
+
+/* Right pane */
+
+#content th, #content td {
+    padding: 2px 4px;
+}
+
+#content th {
+    border-bottom: 1px solid #555555;
+}
+
+#content td {
+    border-left: 1px solid #d9d9d9;
+}
+
+#content td:first-child {
+    border-left: none;
+}
+
+#content td.odd {
+    background: #f1f5fa;
+}
+
+#content tr.selected td {
+    background: none;
+}
+
+#content .name         { width: 29% }
+#content .artist       { width: 29% }
+#content .album        { width: 29% }
+#content .track_number { width: 9% }
