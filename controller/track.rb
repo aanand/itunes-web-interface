@@ -1,9 +1,23 @@
 class TrackController < Ramaze::Controller
   map '/track'
-  layout '/app'
   
-  def play source_id, playlist_id, track_id
-    Track.get(source_id, playlist_id, track_id).play
-    redirect_referer
+  def queue *parts
+    Itunes.get.jukebox << get_tracks(*parts)
+    respond ' '
+  end
+  
+  def play *parts
+    Itunes.get.play_now(get_tracks(*parts))
+    respond ' '
+  end
+  
+  private
+  
+  def get_tracks *args
+    if request.post?
+      request.body.readlines.map { |path| Track.get(path) }
+    else
+      [Track.get(*args)]
+    end
   end
 end

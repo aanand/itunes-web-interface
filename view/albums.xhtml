@@ -1,0 +1,6 @@
+<ul id="albums">
+    <li>All</li>
+    <?r Track.get_albums(@tracks).each do |album| ?>
+        <li>#{h(album)}</li>
+    <?r end ?>
+</ul>

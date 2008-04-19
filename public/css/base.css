@@ -16,12 +16,92 @@
     bottom: 0;
     left: 20%;
     margin-left: 1px;
-    overflow: auto;
 }
 
-#content table {
-    width: 100%;
+#browser {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 0;
+    overflow: hidden;
+
+    /* toggled by JS */
+    display: none;
 }
+
+#browser ul#artists {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#browser ul#albums {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 0;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#tracklist {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+}
+
+#tracklist .header {
+    /* compensate for scrollbar. kind of icky. */
+    margin-right: 15px;
+    overflow: hidden;
+    
+    position: relative;
+    z-index: 1;
+}
+
+#tracklist .tracks {
+    position: absolute;
+    top: 18px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#tracklist .header > *,
+#tracklist .row > * {
+    display: block;
+    float: left;
+}
+
+#tracklist .header,
+#tracklist .row {
+    clear: left;
+}
+
+#tracklist .header,
+#tracklist .row,
+#tracklist .header > *,
+#tracklist .row > * {
+    height: 18px;
+    overflow: hidden;
+}
+
+#tracklist .icon         { width: 1% }
+#tracklist .name         { width: 29% }
+#tracklist .artist       { width: 29% }
+#tracklist .album        { width: 29% }
+#tracklist .time         { width: 5% }
 
 /* Styling */
 
@@ -36,8 +116,8 @@ a {
 }
 
 .selected {
-    background-color: #3d80df;
-    color: white;
+    background-color: #3d80df !important;
+    color: white !important;
 }
 
 /* Left pane */
@@ -48,40 +128,41 @@ a {
 }
 
 #sources li {
-    padding-left: 100em;
-    margin-left: -99em;
+    padding-left: 1em;
+}
+
+#sources li a {
+    display: block;
     
-    padding-top: 0.3em;
-    padding-bottom: 0.3em;
+    padding-left: 100em;
+    margin-left: -100em;
+
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 
 /* Right pane */
 
-#content th, #content td {
+#tracklist, #browser {
+    cursor: default;
+}
+
+#tracklist .header span, #tracklist .row span, #browser li {
     padding: 2px 4px;
 }
 
-#content th {
+#tracklist .header {
     border-bottom: 1px solid #555555;
 }
 
-#content td {
+#tracklist .row span {
     border-left: 1px solid #d9d9d9;
 }
 
-#content td:first-child {
+#tracklist .row span:first-child {
     border-left: none;
 }
 
-#content td.odd {
+#tracklist .row.odd {
     background: #f1f5fa;
 }
-
-#content tr.selected td {
-    background: none;
-}
-
-#content .name         { width: 29% }
-#content .artist       { width: 29% }
-#content .album        { width: 29% }
-#content .track_number { width: 9% }

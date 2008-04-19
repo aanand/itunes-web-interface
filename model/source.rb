@@ -1,23 +1,38 @@
 class Source < OSAWrapper
-  def self.get id
-    Itunes.get.sources[id.to_i]
+  def self.get source_id
+    Itunes.get.sources.find { |s| s.id2 == source_id.to_i }
   end
   
-  attr_reader :playlists, :main_playlist
+  attr_reader :playlists, :library_playlist, :jukebox_playlist
   
   def reindex
-    puts "reindexing source: #{name}"
+    Ramaze::Inform::info "reindexing source: #{name}"
     
-    @playlists = {}
+    @playlists = @obj.user_playlists.collect { |p| Playlist.new(p, self) }
     
-    @obj.playlists.each do |p|
-      @playlists[p.id2] = Playlist.new(p)
+    if library?
+      if @jukebox_playlist = @playlists.find { |p| p.name == jukebox_playlist_name }
+        @playlists.delete(@jukebox_playlist)
+      end
     end
     
-    @main_playlist = @playlists.values.find { |p| p.name == self.name }
+    if music_playlist = @playlists.find{ |p| p.name == 'Music' }
+      @library_playlist = Playlist.new(music_playlist, self)
+      # @playlists.delete(music_playlist)
+    else
+      @library_playlist = Playlist.new(@obj.library_playlists.first, self)
+    end
+  end
+
+  def jukebox_playlist_name
+    'Jukebox'
+  end
+  
+  def library?
+    name == 'Library'
   end
   
   def tracks
-    main_playlist.tracks
+    library_playlist.tracks
   end
 end

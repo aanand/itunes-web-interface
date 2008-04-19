@@ -1,0 +1,7 @@
+<div>
+<?r if request[:album].to_s.empty? ?>
+    #{render_template '../albums'}
+<?r end ?>
+
+#{render_template '../tracklist'}
+</div>

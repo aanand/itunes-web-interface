@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="/css/base.css" type="text/css" />
 
     <script src="/js/jquery.js" type="text/javascript"></script>
-    <script src="/js/jquery.dimensions.js" type="text/javascript"></script>
-    <script src="/js/jquery.gradient.js" type="text/javascript"></script>
     <script src="/js/jquery.contextmenu.js" type="text/javascript"></script>
     <script src="/js/base.js" type="text/javascript"></script>
 </head>
@@ -16,18 +14,20 @@
 <body>
     <div id="sources">
         <ul>
-            <?r Itunes.get.sources.values.sort.each do |source|
-                li_class = (@source == source and !@playlist) ? 'selected' : ''
-            ?>
-                <li class="#{li_class}">
-                    <p>#{A source.name, :href => R(SourceController, :list, source.id2)}</p>
+            <li>
+                #{highlighted_link 'Jukebox', R(JukeboxController)}
+            </li>
+            
+            <?r Itunes.get.sources.each do |source| ?>
+                <li>
+                    #{highlighted_link source.name, R(SourceController, :list, source.id2)}
 
                     <ul>
-                        <?r source.playlists.values.sort.each do |playlist|
-                            li_class = (@playlist == playlist) ? 'selected' : ''
+                        <?r source.playlists.each do |playlist|
+                            next if playlist.name == source.library_playlist.name
                         ?>
-                            <li class="#{li_class}">
-                                #{A playlist.name, :href => R(PlaylistController, :list, source.id2, playlist.id2)}
+                            <li>
+                                #{highlighted_link playlist.name, R(PlaylistController, :list, source.id2, playlist.id2)}
                             </li>
                         <?r end ?>
                     </ul>

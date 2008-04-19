@@ -1,0 +1,33 @@
+<div id="tracklist">
+    <div class="header">
+        <span class="icon">&nbsp;</span>
+        <span class="name">Name</span>
+        <span class="artist">Artist</span>
+        <span class="album">Album</span>
+        <span class="time">Time</span>
+    </div>
+
+    <div class="tracks">
+        <?r for tracks in @tracks / 100 ?>
+            <ul>
+                <?r tracks.each_with_index do |track, index|
+                    li_class = 'row'
+                
+                    if index % 2 == 0
+                        li_class << ' even'
+                    else
+                        li_class << ' odd'
+                    end
+                ?>
+                    <li class="#{li_class}" title="#{track.path}">
+                        <span class="icon">#{(@jukebox and track.current?) ? 'P' : ''}</span>
+                        <span class="name">#{track.name}</span>
+                        <span class="artist">#{track.artist}</span>
+                        <span class="album">#{track.album}</span>
+                        <span class="time">#{track.time}</span>
+                    </li>
+                <?r end ?>
+            </ul>
+        <?r end ?>
+    </div>
+</div>

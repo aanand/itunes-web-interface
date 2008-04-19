@@ -1,25 +1,3 @@
-<table>
-    <tr>
-        <th class="name">Name</th>
-        <th class="artist">Artist</th>
-        <th class="album">Album</th>
-        <th class="track_number">Track \#</th>
-    </tr>
-    
-    <?r @playlist.tracks.each do |track| ?>
-        <tr>
-            <td class="name">#{track.name}</td>
-            <td class="artist">#{track.artist}</td>
-            <td class="album">#{track.album}</td>
-            <td class="track_number">#{track.track_number}</td>
-            
-            <td class="actions">
-                <ul>
-                    <li>
-                        #{A('Play', :class => 'action_play', :href => href = R(TrackController, :play, @source.id2, @playlist.id2, track.id2))}
-                    </li>
-                </li>
-            </td>
-        </tr>
-    <?r end ?>
-</table>
+#{render_template '../browser'}
+#{render_template '../tracklist'}
+#{render_template '../context_menu'}

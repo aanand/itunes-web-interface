@@ -1,0 +1,10 @@
+<div id="browser">
+    <ul id="artists">
+        <li>All</li>
+        <?r Track.get_artists(@tracks).each do |artist| ?>
+            <li>#{h(artist)}</li>
+        <?r end ?>
+    </ul>
+    
+    #{render_template '../albums'}
+</div>

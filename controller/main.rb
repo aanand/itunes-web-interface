@@ -4,11 +4,6 @@ class MainController < Ramaze::Controller
   layout '/app'
 
   def index
-  end
-  
-  private
-
-  def title
-    @title || 'iTunes'
+    redirect R(JukeboxController)
   end
 end
