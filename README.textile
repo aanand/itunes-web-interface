@@ -1,0 +1,48 @@
+h1. A web interface to iTunes
+
+This is a webapp, written to be run on a Mac alongside iTunes. It
+exposes a library and playlist browser, and basic controls for
+playing and queuing up tracks. It's intended for use in an
+office-like environment, for democratising control of what music
+is played, or for inciting bitter, hateful infighting.
+
+It's currently on development hiatus, because I ran across a
+pretty major stumbling block--specifically, tracks on remote
+shares can't be queued locally using an iTunes playlist. This
+means enabling queuing of remotely shared music would necessitate
+either some unpleasant hack such as copying it to the local
+library first, managing the upcoming tracks using some other
+method than a native iTunes playlist, or some other solution I
+haven't yet hit upon. Without this ability, however, it's no good
+for my particular use case.
+
+I've released it to the world on the offchance that someone else
+would like to help out and/or adopt it. Some fun features to add
+would include the standard play/pause/next/previous controls and
+somehow slurping in iTunes' graphics to enhance the look-and-feel.
+
+h2. Running it
+
+Firstly, this is Mac-only. Sorry.
+
+Ramaze and RubyOSA are required. They can be installed by typing:
+
+  gem install ramaze
+  gem install rubyosa
+
+That done, make sure iTunes is running, then cd to the application
+directory and type:
+
+  ruby start.rb
+
+Point your browser to http://localhost:7000/ and the fun begins.
+The port can be configured in start.rb.
+
+h2. Acknowledgements
+
+Ramaze is a nice little web server. Though it looks like Merb is going
+to win in the "Ruby not Rails" department. Sorry about that guys.
+
+RubyOSA is amazing.
+
+I am Aanand Prasad (aanand.prasad@gmail.com).
